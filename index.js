@@ -1,13 +1,20 @@
 /* global document, window */
 'use strict';
 
+require('!style!css!./style.css');
+
+// var port = require('./port.js');
+// import { drawPorts } from 'port.js';
+import Ports from './ports.js';
+var port = new Ports();
+
 var canvas = document.getElementById('canvas'),
   ctx = canvas.getContext('2d'),
   seed,
   center,
   camera,
   player,
-  ports,
+  portsArr,
   level = 1,
   attempts,
   startTime;
@@ -67,9 +74,9 @@ var initialize = function() {
     };
 
     //Generate ports
-    ports = new Array(PORT_COUNT);
-    for (let i = 1; i < ports.length; i++) {
-      ports[i] = {
+    portsArr = new Array(PORT_COUNT);
+    for (let i = 1; i < portsArr.length; i++) {
+      portsArr[i] = {
         x: random() * PLANET_AREA - PLANET_AREA / 2,
         y: random() * PLANET_AREA - PLANET_AREA / 2,
         r: PORT_SIZE,
@@ -78,7 +85,7 @@ var initialize = function() {
     }
 
     //HOME port
-    ports[0] = {
+    portsArr[0] = {
       x: player.x,
       y: player.y,
       r: PORT_SIZE,
@@ -122,26 +129,6 @@ var getVector = function(source, target) {
   return vector;
 };
 
-var drawPort = function(x, y, r, color) {
-  ctx.fillStyle = color;
-  ctx.strokeStyle = color;
-  ctx.beginPath();
-  ctx.arc(x - camera.x, y - camera.y, r, 10, 80);
-  ctx.fill();
-};
-
-
-var drawPorts = function() {
-  var port, color;
-  for (var i = 0; i < ports.length; i++) {
-    port = ports[i];
-    color = port.home ? '#0a0' : '#a00';
-
-    if (port.r < PLANET_BACKGROUND_SIZE) color = 'rgba(255,0,0,0.3)';
-
-    drawPort(port.x, port.y, port.r, color);
-  }
-};
 
 
 var drawText = function(text, fontSize, x, y, alignLeft) {
@@ -213,7 +200,8 @@ var draw = function(time) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
-  drawPorts(dt);
+  port.drawPorts(dt, ctx, camera, portsArr);
+  // port.drawPorts(dt, ctx, camera, ports);
   drawHud(dt);
 
   requestAnimationFrame(draw);
