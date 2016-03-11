@@ -25,8 +25,8 @@ game.addPlayer(player);
 var camera = new Camera(player.x - canvas.width / 2, player.y - canvas.height / 2);
 game.setCamera(camera);
 
-var ports = new Ports(PORT_COUNT, player);
-game.addDrawable(ports);
+var ports = new Ports(game, PORT_COUNT, player);
+
 var hud = new Hud(game, player);
 game.addDrawable(hud);
 

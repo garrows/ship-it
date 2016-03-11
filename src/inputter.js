@@ -28,5 +28,15 @@ export default class Inputter {
           console.log('Key', e.which);
       }
     };
+
+    document.onmousedown = function(e) {
+      let camera = game.camera;
+      if (!camera) return;
+
+      game.drawables.forEach((drawable) => {
+        typeof drawable.mousedown === 'function' && drawable.mousedown(e);
+      });
+      console.log(canvas.width, e.clientX);
+    }
   }
 }
