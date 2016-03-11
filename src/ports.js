@@ -23,7 +23,6 @@ class Ports {
       r: PORT_SIZE,
       home: true
     };
-    console.log(player.x, player.y)
 
     // Other ports
     for (let i = 1; i < this.portsArr.length; i++) {

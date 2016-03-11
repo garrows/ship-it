@@ -1,17 +1,16 @@
 class Player {
+
   constructor(x, y) {
     this.x = x;
     this.y = y;
     this.state = 'spawn';
+    this.gold = 1000;
   }
   update() {
 
   }
   draw() {
 
-  }
-  get health() {
-    return this.health;
   }
 }
 export default Player;

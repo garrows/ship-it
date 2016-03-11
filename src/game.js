@@ -8,26 +8,39 @@ class Game {
     this.camera = null;
     this.lastTime = null;
   }
+
   addPlayer(player) {
     this.players.push(player);
   }
+
   setCamera(camera) {
     this.camera = camera;
   }
+
   addDrawable(drawable) {
     this.drawables.push(drawable);
   }
-  update() {
 
+  update(dt) {
+    this.camera.update(dt);
+    this.drawables.forEach((drawable) => {
+      if (typeof drawable.update === 'function') {
+        drawable.update(dt, this.ctx, this.camera);
+      }
+    });
   }
+
   draw(time) {
     //Lazy way to prevent 0 time bugs on firt run
     if (!this.lastTime) {
       this.lastTime = time;
       return;
     }
+
     var dt = time - this.lastTime;
     this.lastTime = time;
+
+    this.update(dt, this.ctx);
 
     this.ctx.fillStyle = '#000000';
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -35,7 +48,14 @@ class Game {
     this.drawables.forEach((drawable) => {
       drawable.draw(dt, this.ctx, this.camera);
     });
-    // drawHud(dt);
+  }
+
+  start() {
+    var draw = (time) => {
+      this.draw(time);
+      requestAnimationFrame(draw);
+    };
+    requestAnimationFrame(draw);
   }
 }
 export default Game;
