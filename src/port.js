@@ -1,6 +1,6 @@
 import Clickable from './clickable.js';
 
-export default class Port extends Clickable{
+export default class Port extends Clickable {
   constructor(game, x, y, z) {
     super(game, x, y, z);
     this.game = game;
@@ -19,20 +19,4 @@ export default class Port extends Clickable{
     ctx.arc(this.x - camera.x, this.y - camera.y, this.r, 10, 80);
     ctx.fill();
   }
-  // mousedown(event) {
-  //   let camera = this.game.camera,
-  //     x = event.clientX + camera.x,
-  //     y = event.clientY + camera.y;
-  //
-  //   if (
-  //     x < this.x + this.r &&
-  //     x > this.x - this.r &&
-  //     y < this.y + this.r &&
-  //     y > this.y - this.r
-  //   ) {
-  //     return this.selected = true;
-  //   } else {
-  //     return this.selected = false;
-  //   }
-  // }
 }
