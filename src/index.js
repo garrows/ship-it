@@ -3,7 +3,7 @@
 
 require('!style!css!./style.css');
 
-import Ports from './ports.js';
+import Levels from './levels.js';
 import Game from './game.js';
 import Player from './player.js';
 import Camera from './camera.js';
@@ -12,7 +12,6 @@ import Resizer from './resizer.js';
 import Inputter from './inputter.js';
 
 var canvas = document.getElementById('canvas');
-var PORT_COUNT = 2;
 
 var game = new Game(canvas);
 
@@ -25,10 +24,9 @@ game.addPlayer(player);
 var camera = new Camera(player.x - canvas.width / 2, player.y - canvas.height / 2);
 game.setCamera(camera);
 
-var ports = new Ports(game, PORT_COUNT, player);
+var levels = new Levels(game, player);
 
 var hud = new Hud(game, player);
-game.addDrawable(hud);
 
 
 game.start();
@@ -37,7 +35,7 @@ game.start();
 window.game = game;
 window.player = player;
 window.camera = camera;
-window.ports = ports;
+window.levels = levels;
 window.hud = hud;
 window.canvas = canvas;
 

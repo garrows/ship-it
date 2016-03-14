@@ -36,7 +36,6 @@ export default class Inputter {
       game.drawables.forEach((drawable) => {
         typeof drawable.mousedown === 'function' && drawable.mousedown(e);
       });
-      console.log(canvas.width, e.clientX);
     }
   }
 }

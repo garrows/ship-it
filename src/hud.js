@@ -23,6 +23,7 @@ class Hud {
     this.goals = 0;
     this.instructionsY = null;
     this.goalsFinishedTimer = 0;
+    game.addDrawable(this);
   }
   update(dt, ctx) {
     // console.log(dt);
