@@ -1,12 +1,14 @@
 class Game {
   constructor(canvas) {
-    console.log('constructed game');
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.players = [];
     this.drawables = [];
     this.camera = null;
     this.lastTime = null;
+
+    //TODO: REMOVE
+    // this.debug = true;
   }
 
   addPlayer(player) {

@@ -17,11 +17,10 @@ export default class Ship extends Clickable {
     this.cargo = cargo;
     this.state = 'MOVING';
   }
-  update(dt, ctx, camera) {
+  update(dt) {
     let dx = this.x - this.target.x,
       dy = this.y - this.target.y;
 
-    console.log(this.state, Math.round(this.cargo));
     //State actor
     switch (this.state) {
       case 'MOVING':
@@ -72,31 +71,8 @@ export default class Ship extends Clickable {
         break;
       default:
         console.warn('unknown ship state');
-
     }
 
-
-
-    //   } else if (this.cargo < 0) {
-    //     console.log('state', this.state, 2, Math.round(this.cargo));
-    //     this.cargo = 0; //Correction for dx
-    //     this.state = 'MOVING';
-    //     this.target = this.target === this.tradePort ? this.homePort : this.tradePort;
-    //   } else
-    // if (this.cargo < SHIP_CARGO_MAX && this.state === 'MOVING') {
-    //   console.log('state', this.state, 3, Math.round(this.cargo));
-    //   this.state = 'LOADING';
-    // } else if (this.cargo < SHIP_CARGO_MAX && this.state === 'LOADING') {
-    //   console.log('state', this.state, 3.5, Math.round(this.cargo));
-    //   this.cargo += dx * SHIP_CARGO_LOAD_MULTIPLIER;
-    // } else if (this.cargo > SHIP_CARGO_MAX) {
-    //   console.log('state', this.state, 4, Math.round(this.cargo));
-    //   this.cargo = SHIP_CARGO_MAX; //Correction for dx
-    //   this.target = this.target === this.tradePort ? this.homePort : this.tradePort;
-    //   this.state = 'MOVING';
-    // } else {
-    //   console.warn('unknown ship state');
-    // }
   }
   draw(dt, ctx, camera) {
     super.draw(dt, ctx, camera);

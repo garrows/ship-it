@@ -24,6 +24,10 @@ class Hud {
     this.instructionsY = null;
     this.goalsFinishedTimer = 0;
     game.addDrawable(this);
+
+    if (game.debug) {
+      this.goals = GOAL_FINISHED + 1;
+    }
   }
   update(dt, ctx) {
     // console.log(dt);
