@@ -8,7 +8,6 @@ export default class Levels {
     this.ports = [];
 
     //HOME port
-
     this.ports.push(new Port(game, player.x, player.y, PORT_SIZE));
     this.ports[0].home = true;
 

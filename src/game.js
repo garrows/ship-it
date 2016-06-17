@@ -1,5 +1,10 @@
-class Game {
+import {
+  EventEmitter
+} from 'events';
+
+class Game extends EventEmitter {
   constructor(canvas) {
+    super();
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.players = [];
@@ -50,6 +55,7 @@ class Game {
     this.drawables.forEach((drawable) => {
       drawable.draw(dt, this.ctx, this.camera);
     });
+    this.emit('post-draw', dt, this.ctx, this.camera);
   }
 
   start() {

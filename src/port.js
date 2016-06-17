@@ -9,6 +9,7 @@ export default class Port extends Clickable {
 
     this.home = false;
     this.traders = [];
+    game.on('post-draw', this.postDraw);
   }
   update(dt, ctx, camera) {
     this.traders.forEach((trader) => {
@@ -29,6 +30,9 @@ export default class Port extends Clickable {
     ctx.arc(x, y, r, 10, 80);
     ctx.fill();
 
+  }
+  postDraw(dt, ctx, camera) {
+    console.log('blah');
   }
   addTrader(port) {
     this.traders.push({
